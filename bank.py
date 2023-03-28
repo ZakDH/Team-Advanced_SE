@@ -1,7 +1,8 @@
 import random
 from account import Account
 
-class Bank:    
+class Bank:
+    # Encapsulation: The accounts dictionary is hidden from outside access.
     def __init__(self):
         self.accounts = {}
 
@@ -15,7 +16,7 @@ class Bank:
         return self.accounts.get(accountNumber)
 
     def viewDetails(self, accountNumber):
-        account = self.accounts.get(accountNumber)
+        account = self.getAccount(accountNumber)
         if account:
                 print("--Account Details--")
                 print(f"\nFirst Name: {account.firstName}")
@@ -35,7 +36,10 @@ class Bank:
             print(f"Account {accountNumberTo} not found.")
             return
         try:
+            # Polymorphism: both the withdraw and deposit methods have the same name and input parameters, 
+            # but behave differently depending on the object they are called on (i.e. Account or SavingsAccount)
             accountFrom.withdraw(amount, accountFrom)
             accountTo.deposit(amount, accountTo)
         except ValueError as e:
             print(str(e))
+
