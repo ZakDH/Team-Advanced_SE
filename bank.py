@@ -42,4 +42,3 @@ class Bank:
             accountTo.deposit(amount, accountTo)
         except ValueError as e:
             print(str(e))
-
